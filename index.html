@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="header">
+                <button class="menu-toggle" aria-label="Open Menu">
+                    ☰
+                  </button>
+                <img src="./image/Asset1@3x1.svg" alt="icon">
+                <ul class="lists">
+                    <li class="list-item">БАНК</li>
+                    <li class="list-item">БИЗНЕС</li>
+                    <li class="list-item">ИНВЕСТИЦИИ</li>
+                    <li class="list-item">СТРАХОВАНИЕ</li>
+                    <li class="list-item">МОБАЙЛ</li>
+                    <li class="list-item">ПУТЕШЕСТВИЯ</li>
+                    <li class="list-item">РАЗВЛЕЧЕНИЯ</li>
+                </ul>
+                <div class="header-button">
+                    <button>ВОЙТИ</button>
+                </div>
+            </div>
+            
+            <div class="main">
+                <h1 class="title">Конвертер валют онлайн</h1>
+                <div class="main-container">
+
+                    <div class="container-item">
+                        <div class="card-title">
+                            <p>У меня есть </p>
+                        </div>
+                        <div class="item-buttons first">
+                            <button class="item-button active" value="RUB">RUB</button>
+                            <button class="item-button" value="USD">USD</button>
+                            <button class="item-button" value="EUR">EUR</button>
+                            <button class="item-button" value="GBP">GBP</button>
+                        </div>
+                        <div class="card-main">
+                            <input class="first-input" type="text">
+                            <p class="rate-info first-info"></p>
+                        </div>
+                    </div>
+
+                    <div class="container-item">
+                        <div class="card-title">
+                            <p>Хочу приобрести</p>
+                        </div>
+                        <div class="item-buttons second">
+                            <button class="item-button" value="RUB">RUB</button>
+                            <button class="item-button active" value="USD">USD</button>
+                            <button class="item-button" value="EUR">EUR</button>
+                            <button class="item-button" value="GBP">GBP</button>
+                        </div>
+                        <div class="card-main">
+                            <input class="second-input" type="text">
+                            <p class="rate-info second-info"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="error">Нет подключения к Интернету</div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
