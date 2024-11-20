@@ -52,6 +52,7 @@ document.querySelector(".menu-toggle").addEventListener("click", () => {
   document.addEventListener("DOMContentLoaded", () => {
   
     window.addEventListener('online', () => {
+      console.clear()
       errDiv.style.display = "none";
       if(lastInput=="first"){
         updateFirstİnput()
