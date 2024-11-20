@@ -11,6 +11,7 @@ document.querySelector(".menu-toggle").addEventListener("click", () => {
     document.querySelector(".lists").classList.toggle("show");
   });
 
+
   function checkInput(value){
     value=value.replace(/,/g,".");
         value = value.replace(/[^0-9.]/g, '');
@@ -34,7 +35,7 @@ document.querySelector(".menu-toggle").addEventListener("click", () => {
 
   function generateApi(firstValue,secondValue){
   
-    return fetch(`https://v6.exchangerate-api.com/v6/ece8ea48366ac8a0a2cbbb88/pair/${firstValue}/${secondValue}`)
+    return fetch(`https://v6.exchangerate-api.com/v6/5a6940ac0b4bfcbff22133c8/pair/${firstValue}/${secondValue}`)
     .then(res=>{
         return res.json()
     })
@@ -75,9 +76,14 @@ document.querySelector(".menu-toggle").addEventListener("click", () => {
       generateApi(firstValue, secondValue).then(rate => {
           if (rate != null) {
             
-              if (lastInput === "first") {
-
+              if (lastInput === "first") {                
+                if(calculateResult(firstInput.value,rate)){
                   secondInput.value = calculateResult(firstInput.value,rate).toFixed(5);
+                }
+                else{
+                  secondInput.value=""
+                }
+
               }
               let result = rate.toFixed(5);
               let result1 = (1 / rate).toFixed(5);
@@ -94,12 +100,20 @@ document.querySelector(".menu-toggle").addEventListener("click", () => {
       generateApi(secondValue, firstValue).then(rate => {
           if (rate != null) {
               if (lastInput === "second") {
-                  firstInput.value = calculateResult(secondInput.value,rate).toFixed(5);
+                              
+                  if(calculateResult(secondInput.value,rate)){
+                    firstInput.value = calculateResult(secondInput.value,rate).toFixed(5);
+                  }
+                  else{
+                    firstInput.value=""
+                  }
+  
+              
               }
               let result = rate.toFixed(5);
               let result1 = (1 / rate).toFixed(5);
-              secondInfo.textContent = `1 ${firstValue} = ${result} ${secondValue}`;
-              firstInfo.textContent = `1 ${secondValue} = ${result1} ${firstValue}`;
+              firstInfo.textContent = `1 ${firstValue} = ${result1} ${secondValue}`;
+              secondInfo.textContent = `1 ${secondValue} = ${result} ${firstValue}`;
           }
       });
   }
