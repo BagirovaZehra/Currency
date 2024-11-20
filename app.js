@@ -27,7 +27,8 @@ document.querySelector(".menu-toggle").addEventListener("click", () => {
           }
         value=value.join(".")
       }
-  return value
+ return value
+
   }
 
   let firstValue="RUB";
@@ -73,11 +74,16 @@ document.querySelector(".menu-toggle").addEventListener("click", () => {
   function updateFirstİnput(){
     lastInput = "first"; 
       firstInput.value = checkInput(firstInput.value);
+      if (firstInput.value === "0") {
+        secondInput.value = "0";
+        return; 
+    }
       generateApi(firstValue, secondValue).then(rate => {
           if (rate != null) {
             
-              if (lastInput === "first") {                
-                if(calculateResult(firstInput.value,rate)){
+              if (lastInput === "first") { 
+                
+                 if(calculateResult(firstInput.value,rate)){
                   secondInput.value = calculateResult(firstInput.value,rate).toFixed(5);
                 }
                 else{
@@ -97,6 +103,10 @@ document.querySelector(".menu-toggle").addEventListener("click", () => {
   function updateSecondInput(){
     lastInput = "second"; 
       secondInput.value = checkInput(secondInput.value);
+      if (secondInput.value === "0") {
+        firstInput.value = "0";
+        return; 
+    }
       generateApi(secondValue, firstValue).then(rate => {
           if (rate != null) {
               if (lastInput === "second") {
