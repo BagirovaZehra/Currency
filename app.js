@@ -4,8 +4,7 @@ let firstInput = document.querySelector(".first-input");
 let secondInput = document.querySelector(".second-input");
 let firstInfo = document.querySelector(".first-info");
 let secondInfo = document.querySelector(".second-info");
-let inputs = document.querySelectorAll("input");;
-let errDiv = document.querySelector(".error")
+let errDiv = document.querySelector(".error");
 
 document.querySelector(".menu-toggle").addEventListener("click", () => {
     document.querySelector(".lists").classList.toggle("show");
@@ -27,6 +26,9 @@ document.querySelector(".menu-toggle").addEventListener("click", () => {
           }
         value=value.join(".")
       }
+      if (value !== "0" && !value.startsWith("0.")) {
+        value = value.replace(/^0+/, ""); 
+    }
  return value
 
   }
@@ -55,7 +57,7 @@ document.querySelector(".menu-toggle").addEventListener("click", () => {
       console.clear()
       errDiv.style.display = "none";
       if(lastInput=="first"){
-        updateFirstİnput()
+        updateFirstInput()
       }
         else if(lastInput=="second"){
           updateSecondInput()
@@ -72,12 +74,17 @@ document.querySelector(".menu-toggle").addEventListener("click", () => {
   }
   let lastInput = null; 
 
-  function updateFirstİnput(){
+  function updateFirstInput(){
     lastInput = "first"; 
       firstInput.value = checkInput(firstInput.value);
       if (firstInput.value === "0") {
         secondInput.value = "0";
         return; 
+    }
+    if(firstValue==secondValue){
+      secondInput.value=firstInput.value;
+      firstInfo.textContent = `1 ${firstValue} = 1.00000 ${secondValue}`;
+      secondInfo.textContent = `1 ${secondValue} = 1.00000 ${firstValue}`;
     }
       generateApi(firstValue, secondValue).then(rate => {
           if (rate != null) {
@@ -100,13 +107,18 @@ document.querySelector(".menu-toggle").addEventListener("click", () => {
       });
   }
 
-  firstInput.addEventListener("input", updateFirstİnput);
+  firstInput.addEventListener("input", updateFirstInput);
   function updateSecondInput(){
     lastInput = "second"; 
       secondInput.value = checkInput(secondInput.value);
       if (secondInput.value === "0") {
         firstInput.value = "0";
         return; 
+    }
+    if(secondValue==firstValue){
+      firstInput.value=secondInput.value;
+      firstInfo.textContent = `1 ${firstValue} = 1.00000 ${secondValue}`;
+      secondInfo.textContent = `1 ${secondValue} = 1.00000 ${firstValue}`;
     }
       generateApi(secondValue, firstValue).then(rate => {
           if (rate != null) {
@@ -139,7 +151,7 @@ firstBtn.forEach(button => {
         firstBtn.forEach(btn => btn.classList.remove('active'));
         button.classList.add('active');
         if(lastInput=="first"){
-          updateFirstİnput()
+          updateFirstInput()
         }
         else{
           updateSecondInput()
@@ -156,11 +168,11 @@ secondBtn.forEach(button => {
           updateSecondInput()
           }
           else{
-            updateFirstİnput()
+            updateFirstInput()
   
           }
     });
 });
 
-updateFirstİnput()
+updateFirstInput()
   
