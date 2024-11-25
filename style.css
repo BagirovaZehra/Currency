@@ -132,7 +132,7 @@
 @media screen and (min-width:992px) and (max-width:1279px){
      .title{
         padding-left:200px ;
-        font-size: 50px;
+        font-size: 40px;
      }
      .main-container{
         margin: 0 200px;
@@ -144,7 +144,7 @@
     .title{
         text-align: center;
         padding-left:0;
-        font-size: 38px;
+        font-size: 36px;
      }
      .main-container{
         margin: 0 auto;

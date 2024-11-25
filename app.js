@@ -26,9 +26,16 @@ document.querySelector(".menu-toggle").addEventListener("click", () => {
           }
         value=value.join(".")
       }
+      if (/^0+$/.test(value)) {
+        return value="0"; 
+    }
+    if(value=="."){
+      return value="0."
+    }
       if (value !== "0" && !value.startsWith("0.")) {
         value = value.replace(/^0+/, ""); 
     }
+        
  return value
 
   }
@@ -38,7 +45,7 @@ document.querySelector(".menu-toggle").addEventListener("click", () => {
 
   function generateApi(firstValue,secondValue){
   
-    return fetch(`https://v6.exchangerate-api.com/v6/5a6940ac0b4bfcbff22133c8/pair/${firstValue}/${secondValue}`)
+    return fetch(`https://v6.exchangerate-api.com/v6/1371d5ff85e06f9134a73f14/pair/${firstValue}/${secondValue}`)
     .then(res=>{
         return res.json()
     })
@@ -81,6 +88,11 @@ document.querySelector(".menu-toggle").addEventListener("click", () => {
         secondInput.value = "0";
         return; 
     }
+      if (firstInput.value === "0.") {
+        secondInput.value = "0.";
+        return; 
+    }
+
     if(firstValue==secondValue){
       secondInput.value=firstInput.value;
       firstInfo.textContent = `1 ${firstValue} = 1.00000 ${secondValue}`;
@@ -115,6 +127,11 @@ document.querySelector(".menu-toggle").addEventListener("click", () => {
         firstInput.value = "0";
         return; 
     }
+      if (secondInput.value === "0.") {
+        firstInput.value = "0.";
+        return; 
+    }
+
     if(secondValue==firstValue){
       firstInput.value=secondInput.value;
       firstInfo.textContent = `1 ${firstValue} = 1.00000 ${secondValue}`;
